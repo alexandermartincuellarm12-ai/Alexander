@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Destapa hilos de esperanza · UTS Salamanca, Guanajuato</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #2D7D46;
+    --green-dark: #1B5E20;
+    --green-light: #E8F5E9;
+    --green-mid: #C8E6C9;
+    --pink: #C2185B;
+    --pink-light: #FCE4EC;
+    --pink-mid: #F8BBD9;
+    --text: #1A1A1A;
+    --text-muted: #5A5A5A;
+    --border: #E0E0E0;
+    --bg: #FFFFFF;
+    --bg-soft: #F9F9F7;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 600; color: var(--green-dark);
+    text-decoration: none;
+  }
+  .nav-logo svg { width: 28px; height: 28px; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-size: 13px; color: var(--text-muted);
+    text-decoration: none; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+  .nav-cta {
+    background: var(--green); color: #fff !important;
+    padding: 8px 18px; border-radius: 8px; font-weight: 500 !important;
+  }
+  .nav-cta:hover { background: var(--green-dark) !important; color: #fff !important; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(145deg, var(--green-light) 0%, #fff 50%, var(--pink-light) 100%);
+    padding: 80px 5% 60px;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--green); color: #fff;
+    font-size: 11px; font-weight: 500; letter-spacing: 1px;
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    color: var(--green-dark);
+    line-height: 1.2; max-width: 700px; margin: 0 auto 16px;
+  }
+  .hero h1 span { color: var(--pink); }
+  .hero p {
+    font-size: 17px; color: var(--text-muted);
+    max-width: 520px; margin: 0 auto 36px; line-height: 1.7;
+  }
+
+  /* COUNTERS */
+  .counters {
+    display: flex; gap: 16px; justify-content: center;
+    flex-wrap: wrap; margin-bottom: 36px;
+  }
+  .counter-card {
+    background: #fff; border: 1px solid var(--green-mid);
+    border-radius: 14px; padding: 18px 28px; text-align: center;
+    min-width: 140px;
+  }
+  .counter-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; color: var(--green); display: block;
+  }
+  .counter-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  /* BUTTONS */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--green); color: #fff;
+    padding: 14px 28px; border-radius: 10px;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    transition: background .2s, transform .1s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #fff; color: var(--pink);
+    padding: 13px 24px; border-radius: 10px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    border: 1.5px solid var(--pink-mid);
+    transition: background .2s; cursor: pointer; margin-left: 12px;
+  }
+  .btn-outline:hover { background: var(--pink-light); }
+
+  /* SECTIONS */
+  section { padding: 70px 5%; }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--green); margin-bottom: 10px;
+  }
+  section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3vw, 32px); color: var(--green-dark);
+    margin-bottom: 16px; line-height: 1.25;
+  }
+  .lead { font-size: 16px; color: var(--text-muted); max-width: 620px; line-height: 1.7; margin-bottom: 36px; }
+
+  /* CAUSA */
+  .causa { background: var(--bg-soft); }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px; margin-bottom: 48px;
+  }
+  .stat-box {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px; text-align: center;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; color: var(--pink); display: block;
+  }
+  .stat-desc { font-size: 13px; color: var(--text-muted); margin-top: 6px; line-height: 1.5; }
+
+  /* STEPS */
+  .steps-title {
+    font-size: 20px; font-weight: 600; color: var(--green-dark); margin-bottom: 24px;
+  }
+  .steps { display: flex; flex-direction: column; gap: 16px; max-width: 620px; }
+  .step {
+    display: flex; align-items: flex-start; gap: 16px;
+    background: #fff; border: 1px solid var(--green-mid);
+    border-radius: 12px; padding: 18px 20px;
+  }
+  .step-num {
+    min-width: 32px; height: 32px; border-radius: 50%;
+    background: var(--green); color: #fff;
+    font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-body strong { font-weight: 600; color: var(--green-dark); display: block; margin-bottom: 4px; }
+  .step-body span { font-size: 14px; color: var(--text-muted); }
+
+  /* PUNTOS */
+  .puntos-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px; margin-top: 8px;
+  }
+  .punto-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 14px; padding: 22px;
+    transition: border-color .2s, transform .2s;
+  }
+  .punto-card:hover { border-color: var(--green); transform: translateY(-2px); }
+  .punto-card.main { border-color: var(--green); border-width: 2px; }
+  .punto-tag {
+    font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--green); background: var(--green-light);
+    padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px;
+  }
+  .punto-name { font-size: 15px; font-weight: 600; color: var(--green-dark); margin-bottom: 6px; }
+  .punto-detail { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* FORM */
+  .form-section { background: linear-gradient(135deg, var(--green-light), var(--pink-light)); }
+  .form-wrap {
+    background: #fff; border-radius: 20px;
+    padding: 40px; max-width: 700px; margin: 0 auto;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.06);
+  }
+  .form-wrap h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; color: var(--green-dark); margin-bottom: 6px;
+  }
+  .form-wrap p { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+  .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field { margin-bottom: 18px; }
+  .field label {
+    display: block; font-size: 13px; font-weight: 500;
+    color: var(--text-muted); margin-bottom: 6px;
+  }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 11px 14px;
+    border: 1.5px solid var(--border); border-radius: 9px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    color: var(--text); background: #fff;
+    transition: border-color .2s;
+    appearance: none;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--green);
+  }
+  .field textarea { resize: vertical; min-height: 90px; }
+  .upload-zone {
+    border: 2px dashed var(--green-mid); border-radius: 10px;
+    padding: 28px; text-align: center; cursor: pointer;
+    background: var(--green-light); transition: border-color .2s;
+  }
+  .upload-zone:hover { border-color: var(--green); }
+  .upload-icon { font-size: 36px; margin-bottom: 8px; }
+  .upload-zone p { font-size: 13px; color: var(--text-muted); margin: 0; }
+  .upload-zone strong { color: var(--green); }
+  .submit-btn {
+    width: 100%; background: var(--green); color: #fff;
+    border: none; padding: 15px; border-radius: 10px;
+    font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600;
+    cursor: pointer; margin-top: 8px;
+    transition: background .2s, transform .1s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .submit-btn:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+  /* SUCCESS */
+  .success-msg {
+    display: none; background: var(--green-light); border: 1px solid var(--green-mid);
+    border-radius: 12px; padding: 20px; text-align: center; margin-top: 16px;
+  }
+  .success-msg.show { display: block; }
+  .success-msg p { color: var(--green-dark); font-weight: 500; font-size: 15px; }
+
+  /* TESTIMONIOS */
+  .testimonios-bg { background: var(--bg-soft); }
+  .test-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px; margin-top: 8px;
+  }
+  .test-card {
+    background: #fff; border: 1px solid var(--pink-mid);
+    border-radius: 16px; padding: 28px;
+  }
+  .test-quote {
+    font-size: 15px; color: var(--text-muted);
+    line-height: 1.7; font-style: italic; margin-bottom: 20px;
+  }
+  .test-quote::before { content: '"'; font-size: 40px; color: var(--pink-mid); line-height: 0; vertical-align: -14px; margin-right: 4px; }
+  .test-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--pink-light); display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px; color: var(--pink); flex-shrink: 0;
+  }
+  .test-info { display: flex; align-items: center; gap: 12px; }
+  .test-name { font-size: 14px; font-weight: 600; color: var(--pink); }
+  .test-role { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  /* CONTACTO */
+  .contacto-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; margin-top: 8px;
+  }
+  .contact-card {
+    background: var(--bg-soft); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px; text-align: center;
+  }
+  .contact-icon { font-size: 30px; margin-bottom: 10px; display: block; }
+  .contact-card h4 { font-size: 14px; font-weight: 600; color: var(--green-dark); margin-bottom: 6px; }
+  .contact-card p { font-size: 13px; color: var(--text-muted); }
+  .contact-card a { color: var(--green); text-decoration: none; }
+
+  /* FOOTER */
+  footer {
+    background: var(--green-dark); color: #fff;
+    padding: 40px 5%; text-align: center;
+  }
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; margin-bottom: 10px;
+  }
+  footer p { font-size: 13px; opacity: .75; line-height: 1.8; }
+  footer a { color: #A5D6A7; text-decoration: none; }
+  .footer-links { display: flex; gap: 20px; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
+  .footer-links a { font-size: 12px; opacity: .7; }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    nav { padding: 0 4%; }
+    .nav-links { display: none; }
+    .hero { padding: 50px 4% 40px; }
+    .hero h1 { font-size: 26px; }
+    .form-grid-2 { grid-template-columns: 1fr; }
+    .form-wrap { padding: 24px; }
+    section { padding: 48px 4%; }
+    .btn-outline { margin-left: 0; margin-top: 10px; }
+    .hero-btns { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#inicio" class="nav-logo">
+    <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="14" cy="14" r="13" fill="#E8F5E9" stroke="#2D7D46" stroke-width="1.5"/>
+      <path d="M9 14 Q14 7 19 14 Q14 21 9 14Z" fill="#2D7D46" opacity=".7"/>
+      <circle cx="14" cy="14" r="3" fill="#C2185B"/>
+    </svg>
+    Destapa hilos de esperanza · UTS
+  </a>
+  <ul class="nav-links">
+    <li><a href="#causa">Nuestra Causa</a></li>
+    <li><a href="#puntos">Puntos de Acopio</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-badge">UTS Salamanca · Salamanca, Guanajuato</div>
+  <h1>Cada tapa que recolectas<br><span>destapa hilos de esperanza</span> en Salamanca</h1>
+  <p>Convierte tapas de plástico en apoyo social para personas con cáncer. Cada recolección ayuda a crear pelucas, fortalecer redes de apoyo y transformar vidas.</p>
+
+  <div class="counters">
+    <div class="counter-card">
+      <span class="counter-num" id="cnt-tapas">3,064</span>
+      <div class="counter-label">Tapas recolectadas</div>
+    </div>
+    <div class="counter-card">
+      <span class="counter-num" id="cnt-pacientes">3</span>
+      <div class="counter-label">otras causas de apoyo</div>
+    </div>
+    <div class="counter-card">
+      <span class="counter-num" id="cnt-recolectores">47</span>
+      <div class="counter-label">Recolectores activos</div>
+    </div>
+  </div>
+
+  <div class="hero-btns">
+    <a href="#puntos" class="btn-outline">
+      📍 Ver puntos de acopio
+    </a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CAUSA -->
+<section class="causa" id="causa">
+  <div class="section-label">El problema</div>
+  <h2>Las tapas plásticas destruyen<br>nuestros ecosistemas</h2>
+  <p class="lead">Las tapas de botellas plásticas son uno de los residuos más peligrosos para la vida marina. Su pequeño tamaño las hace invisibles para los filtros convencionales. Pero en Salamanca, tienen un segundo destino: <strong style="color:#2D7D46">tu acción de recolectarlas se convierte en apoyo social para crear pelucas y cuidar a personas con cáncer.</strong></p>
+
+  <div class="stats-grid">
+    <div class="stat-box">
+      <span class="stat-num">450</span>
+      <div class="stat-desc">años tarda en degradarse una sola tapa de plástico en la naturaleza</div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">8 kg</span>
+      <div class="stat-desc">de tapas equivalen aproximadamente a $1 MXN en precio de reciclaje</div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">100%</span>
+      <div class="stat-desc">de lo recaudado se destina a pelucas y apoyo social para personas con cáncer</div>
+    </div>
+  </div>
+  <!-- Se eliminó la explicación de la ficha de recolección -->
+</section>
+
+<hr class="divider">
+
+<!-- PUNTOS -->
+<section id="puntos">
+  <div class="section-label">Dónde entregar</div>
+  <h2>Puntos de Acopio en Salamanca, Gto</h2>
+  <p class="lead">Lleva tus tapas a cualquiera de estos puntos. El punto principal está en el plantel de la UTS Salamanca.</p>
+
+  <div class="puntos-grid">
+    <div class="punto-card main">
+      <div class="punto-name">🏫 Edificio A</div>
+      <div class="punto-detail">UTS Salamanca · Edificio A<br>Lunes a Viernes: 8:00 am – 6:00 pm<br><strong style="color:#2D7D46">Sellado inmediato</strong></div>
+    </div>
+    <div class="punto-card">
+      <div class="punto-name">🏫 Edificio C</div>
+      <div class="punto-detail">UTS Salamanca · Edificio C<br>Lunes a Viernes: 8:00 am – 6:00 pm</div>
+    </div>
+    <div class="punto-card">
+      <div class="punto-name">🏫 Edificio B</div>
+      <div class="punto-detail">UTS Salamanca · Edificio B<br>Lunes a Viernes: 8:00 am – 6:00 pm</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- La sección de registro fue eliminada -->
+
+<!-- Sección de 'Historias' eliminada -->
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-label">Contáctanos</div>
+  <h2>¿Tienes dudas o quieres ser voluntario?</h2>
+  <p class="lead">Estamos en la UTS Salamanca y siempre buscamos más manos. Escríbenos, con gusto te atendemos.</p>
+
+  <div class="contacto-grid">
+    <div class="contact-card">
+      <span class="contact-icon">📍</span>
+      <h4>Ubicación</h4>
+      <p>UTS Salamanca, Edificio A<br>Salamanca, Guanajuato, México</p>
+    </div>
+    <div class="contact-card">
+      <span class="contact-icon">📧</span>
+      <h4>Correo electrónico</h4>
+      <p><a href="mailto:destapahilos@uts.edu.mx">destapahilos@uts.edu.mx</a></p>
+    </div>
+    <div class="contact-card">
+      <span class="contact-icon">💬</span>
+      <h4>WhatsApp</h4>
+      <p><a href="https://wa.me/524642139125">464 213 9125</a><br>Lun–Vie 9am–5pm</p>
+    </div>
+    <div class="contact-card">
+      <span class="contact-icon">🤝</span>
+      <h4>Voluntariado</h4>
+      <p>¿Quieres ayudar? Escríbenos y te decimos cómo sumarte como voluntario o punto de acopio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Destapa hilos de esperanza · UTS Salamanca</div>
+  <p>
+    Salamanca, Guanajuato, México<br>
+    Una iniciativa estudiantil para apoyar a personas con cáncer a través de la recolección y el apoyo social.<br>
+    <a href="mailto:destapahilos@uts.edu.mx">destapahilos@uts.edu.mx</a>
+  </p>
+  <div class="footer-links">
+    <a href="#causa">Nuestra Causa</a>
+    <a href="#puntos">Puntos de Acopio</a>
+    <a href="#historias">Historias</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</footer>
+
+<script>
+  function submitForm(e) {
+    e.preventDefault();
+    document.getElementById('fichaForm').style.display = 'none';
+    document.getElementById('successMsg').classList.add('show');
+    document.getElementById('successMsg').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  function updateUpload(input) {
+    if (input.files && input.files[0]) {
+      document.getElementById('upload-name').textContent = '✅ Archivo seleccionado: ' + input.files[0].name;
+    }
+  }
+
+  // Animated counters on scroll
+  function animateCounter(el, target, suffix) {
+    let start = 0;
+    const duration = 1800;
+    const step = 16;
+    const increment = target / (duration / step);
+    const timer = setInterval(function() {
+      start += increment;
+      if (start >= target) { start = target; clearInterval(timer); }
+      el.textContent = (suffix ? suffix : '') + Math.floor(start).toLocaleString('es-MX');
+    }, step);
+  }
+
+  let animated = false;
+  const observer = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !animated) {
+      animated = true;
+      animateCounter(document.getElementById('cnt-tapas'), 3064);
+      animateCounter(document.getElementById('cnt-pacientes'), 3);
+      animateCounter(document.getElementById('cnt-recolectores'), 10);
+    }
+  }, { threshold: 0.3 });
+
+  observer.observe(document.querySelector('.counters'));
+  
+  // Ajuste del contador inicial según datos actualizados
+</script>
+</body>
+</html>
